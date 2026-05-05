@@ -1,0 +1,35 @@
+import{_ as n,o as a,c as p,am as e}from"./chunks/framework.CiF4W93w.js";const _=JSON.parse('{"title":"日常使用的ES语句示例","description":"","frontmatter":{"title":"日常使用的ES语句示例","excerpt":"摘要","date":"2025-06-18 15:52:00","updated":"2025-06-18 15:52:00"},"headers":[],"relativePath":"数据库/ElasticSearch/ES的服务安装/日常使用的ES语句示例.md","filePath":"数据库/ElasticSearch/ES的服务安装/日常使用的ES语句示例.md","lastUpdated":null}'),t={name:"数据库/ElasticSearch/ES的服务安装/日常使用的ES语句示例.md"};function l(o,s,i,c,u,r){return a(),p("div",null,[...s[0]||(s[0]=[e(`<h3 id="精准匹配-加了一个嵌套字段查询" tabindex="-1">精准匹配 加了一个嵌套字段查询 <a class="header-anchor" href="#精准匹配-加了一个嵌套字段查询" aria-label="Permalink to &quot;精准匹配 加了一个嵌套字段查询&quot;">​</a></h3><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>GET /soms_skc_question_alias/_search</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  &quot;query&quot;: {</span></span>
+<span class="line"><span>    &quot;bool&quot;: {</span></span>
+<span class="line"><span>      &quot;must&quot;: [</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>          &quot;constant_score&quot;: {</span></span>
+<span class="line"><span>            &quot;filter&quot;: {</span></span>
+<span class="line"><span>              &quot;term&quot;: {</span></span>
+<span class="line"><span>                &quot;titleResult&quot;: 1</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          }</span></span>
+<span class="line"><span>        },</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>          &quot;nested&quot;: {</span></span>
+<span class="line"><span>            &quot;path&quot;: &quot;diagnosisContent&quot;,</span></span>
+<span class="line"><span>            &quot;query&quot;: {</span></span>
+<span class="line"><span>              &quot;bool&quot;: {</span></span>
+<span class="line"><span>                &quot;must&quot;: [</span></span>
+<span class="line"><span>                  {</span></span>
+<span class="line"><span>                    &quot;term&quot;: {</span></span>
+<span class="line"><span>                      &quot;diagnosisContent.diagnosisObject&quot;: &quot;TITLE&quot;</span></span>
+<span class="line"><span>                    }</span></span>
+<span class="line"><span>                  }</span></span>
+<span class="line"><span>                ]</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      ]</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  &quot;_source&quot;: true</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>精准匹配，且加了一个嵌套字段查询，返回全部字段</p>`,3)])])}const d=n(t,[["render",l]]);export{_ as __pageData,d as default};

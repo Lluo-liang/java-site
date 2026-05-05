@@ -1,0 +1,120 @@
+import{_ as s,o as n,c as t,am as p}from"./chunks/framework.CiF4W93w.js";const q=JSON.parse('{"title":"SpringBoot学习-SpringBoot Actuator","description":"","frontmatter":{"title":"SpringBoot学习-SpringBoot Actuator","excerpt":"摘要","date":"2025-05-22 08:56:08","updated":"2025-05-22 08:56:08"},"headers":[],"relativePath":"框架/框架 Spring家族/框架 SpringBoot/SpringBoot学习-SpringBoot Actuator.md","filePath":"框架/框架 Spring家族/框架 SpringBoot/SpringBoot学习-SpringBoot Actuator.md","lastUpdated":null}'),o={name:"框架/框架 Spring家族/框架 SpringBoot/SpringBoot学习-SpringBoot Actuator.md"};function e(l,a,i,c,u,r){return n(),t("div",null,[...a[0]||(a[0]=[p(`<p>SpringBoot Actuator的关键特性是在应用程序里提供众多Web端点，通过它们了解应用程序运行时的内部状况。</p><h3 id="深入探索spring-boot-actuator-应用监控与管理的利器" tabindex="-1">深入探索Spring Boot Actuator：应用监控与管理的利器 <a class="header-anchor" href="#深入探索spring-boot-actuator-应用监控与管理的利器" aria-label="Permalink to &quot;深入探索Spring Boot Actuator：应用监控与管理的利器&quot;">​</a></h3><p>Spring Boot Actuator 是Spring Boot生态中用于监控和管理应用程序的核心工具。它通过一系列内置的Web端点（Endpoints），让开发者能够实时洞察应用的运行状态、配置信息和性能指标。本文将从关键特性、端点使用、运行时监控到自定义配置，全面解析Actuator的核心功能。</p><hr><h4 id="一、actuator的核心特性" tabindex="-1"><strong>一、Actuator的核心特性</strong> <a class="header-anchor" href="#一、actuator的核心特性" aria-label="Permalink to &quot;**一、Actuator的核心特性**&quot;">​</a></h4><p>Spring Boot Actuator 提供了约20个端点（Endpoint），涵盖应用配置、Bean管理、健康检查等场景。以下是常用端点的功能概览：</p><table tabindex="0"><thead><tr><th><strong>端点路径</strong></th><th><strong>请求方式</strong></th><th><strong>描述</strong></th></tr></thead><tbody><tr><td><code>/actuator/beans</code></td><td>GET</td><td>查看应用上下文中的所有Bean及其依赖关系</td></tr><tr><td><code>/actuator/conditions</code></td><td>GET</td><td>自动配置报告：显示生效和未生效的自动配置类</td></tr><tr><td><code>/actuator/env</code></td><td>GET</td><td>获取全部环境属性（环境变量、JVM属性、配置文件属性等）</td></tr><tr><td><code>/actuator/mappings</code></td><td>GET</td><td>所有URI路径与控制器的映射关系</td></tr><tr><td><code>/actuator/metrics</code></td><td>GET</td><td>应用程序的度量指标（如JVM内存、线程状态等）</td></tr><tr><td><code>/actuator/loggers</code></td><td>GET</td><td>查看日志级别配置</td></tr><tr><td><code>/actuator/health</code></td><td>GET</td><td>应用健康状态（如数据库连接、磁盘空间等）</td></tr><tr><td><code>/actuator/shutdown</code></td><td>POST</td><td>关闭应用（需手动启用）</td></tr></tbody></table><blockquote><p><strong>提示</strong>：访问根端点 <code>/actuator</code> 可查看所有已启用的端点列表。</p></blockquote><hr><h4 id="二、关键端点详解" tabindex="-1"><strong>二、关键端点详解</strong> <a class="header-anchor" href="#二、关键端点详解" aria-label="Permalink to &quot;**二、关键端点详解**&quot;">​</a></h4><h5 id="_1-查看配置明细" tabindex="-1"><strong>1. 查看配置明细</strong> <a class="header-anchor" href="#_1-查看配置明细" aria-label="Permalink to &quot;**1. 查看配置明细**&quot;">​</a></h5><ul><li><strong>/beans端点</strong><br> 展示Spring上下文中的所有Bean及其依赖关系，访问地址：<br><code>http://localhost:8088/actuator/beans</code><br> 适用于排查Bean注入冲突或依赖缺失问题。</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
+<span class="line"><span>	&quot;contexts&quot;: {</span></span>
+<span class="line"><span>		&quot;application&quot;: {</span></span>
+<span class="line"><span>			&quot;beans&quot;: {</span></span>
+<span class="line"><span>              &quot;sqlSessionFactory&quot;: {</span></span>
+<span class="line"><span>                &quot;aliases&quot;: [],</span></span>
+<span class="line"><span>                &quot;scope&quot;: &quot;singleton&quot;,</span></span>
+<span class="line"><span>                &quot;type&quot;: &quot;org.apache.ibatis.session.defaults.DefaultSqlSessionFactory&quot;,</span></span>
+<span class="line"><span>                &quot;resource&quot;: &quot;class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]&quot;,</span></span>
+<span class="line"><span>                &quot;dependencies&quot;: [</span></span>
+<span class="line"><span>                  &quot;org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration&quot;,</span></span>
+<span class="line"><span>                  &quot;dataSource&quot;</span></span>
+<span class="line"><span>                ]</span></span>
+<span class="line"><span>              },</span></span>
+<span class="line"><span>              &quot;jdbcTemplate&quot;: {</span></span>
+<span class="line"><span>                &quot;aliases&quot;: [],</span></span>
+<span class="line"><span>                &quot;scope&quot;: &quot;singleton&quot;,</span></span>
+<span class="line"><span>                &quot;type&quot;: &quot;org.springframework.jdbc.core.JdbcTemplate&quot;,</span></span>
+<span class="line"><span>                &quot;resource&quot;: &quot;class path resource [org/springframework/boot/autoconfigure/jdbc/JdbcTemplateConfiguration.class]&quot;,</span></span>
+<span class="line"><span>                &quot;dependencies&quot;: [</span></span>
+<span class="line"><span>                  &quot;dataSourceScriptDatabaseInitializer&quot;,</span></span>
+<span class="line"><span>                  &quot;org.springframework.boot.autoconfigure.jdbc.JdbcTemplateConfiguration&quot;,</span></span>
+<span class="line"><span>                  &quot;dataSource&quot;,</span></span>
+<span class="line"><span>                  &quot;spring.jdbc-org.springframework.boot.autoconfigure.jdbc.JdbcProperties&quot;</span></span>
+<span class="line"><span>                ]</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><ul><li><strong>/conditions端点</strong><br> 生成自动配置报告，区分<code>positiveMatches</code>（生效配置）和<code>negativeMatches</code>（未生效配置）。访问地址：<br><code>http://localhost:8088/actuator/conditions</code><br> 帮助开发者理解Spring Boot的自动配置逻辑。</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
+<span class="line"><span>	&quot;contexts&quot;: {</span></span>
+<span class="line"><span>		&quot;application&quot;: {</span></span>
+<span class="line"><span>			&quot;positiveMatches&quot;: {</span></span>
+<span class="line"><span>				&quot;DruidDataSourceAutoConfigure&quot;: [{</span></span>
+<span class="line"><span>					&quot;condition&quot;: &quot;OnClassCondition&quot;,</span></span>
+<span class="line"><span>					&quot;message&quot;: &quot;@ConditionalOnClass found required class &#39;com.alibaba.druid.pool.DruidDataSource&#39;&quot;</span></span>
+<span class="line"><span>				}]</span></span>
+<span class="line"><span>			},</span></span>
+<span class="line"><span>			&quot;negativeMatches&quot;: {</span></span>
+<span class="line"><span>				&quot;RabbitAutoConfiguration&quot;: {</span></span>
+<span class="line"><span>					&quot;notMatched&quot;: [{</span></span>
+<span class="line"><span>						&quot;condition&quot;: &quot;OnClassCondition&quot;,</span></span>
+<span class="line"><span>						&quot;message&quot;: &quot;@ConditionalOnClass did not find required class &#39;com.rabbitmq.client.Channel&#39;&quot;</span></span>
+<span class="line"><span>					}],</span></span>
+<span class="line"><span>					&quot;matched&quot;: []</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><ul><li><strong>/env端点</strong><br> 显示所有环境属性，包括系统变量、配置文件属性等。支持按名称查询特定属性：<br><code>http://localhost:8088/actuator/env/{name}</code></li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
+<span class="line"><span>	&quot;activeProfiles&quot;: [],</span></span>
+<span class="line"><span>	&quot;propertySources&quot;: [{</span></span>
+<span class="line"><span>			&quot;name&quot;: &quot;systemProperties&quot;,</span></span>
+<span class="line"><span>			&quot;properties&quot;: {</span></span>
+<span class="line"><span>				&quot;java.runtime.name&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;Java(TM) SE Runtime Environment&quot;</span></span>
+<span class="line"><span>				},</span></span>
+<span class="line"><span>				&quot;java.vm.name&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;Java HotSpot(TM) 64-Bit Server VM&quot;</span></span>
+<span class="line"><span>				},</span></span>
+<span class="line"><span>				&quot;java.runtime.version&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;1.8.0_91-b14&quot;</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		},</span></span>
+<span class="line"><span>		{</span></span>
+<span class="line"><span>			&quot;name&quot;: &quot;Config resource &#39;class path resource [application.yml]&#39; via location &#39;optional:classpath:/&#39;&quot;,</span></span>
+<span class="line"><span>			&quot;properties&quot;: {</span></span>
+<span class="line"><span>				&quot;server.port&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: 8088,</span></span>
+<span class="line"><span>					&quot;origin&quot;: &quot;class path resource [application.yml]:2:9&quot;</span></span>
+<span class="line"><span>				},</span></span>
+<span class="line"><span>				&quot;spring.datasource.url&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;jdbc:mysql://localhost:3306/mall_tiny?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai&quot;,</span></span>
+<span class="line"><span>					&quot;origin&quot;: &quot;class path resource [application.yml]:6:10&quot;</span></span>
+<span class="line"><span>				},</span></span>
+<span class="line"><span>				&quot;spring.datasource.username&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;root&quot;,</span></span>
+<span class="line"><span>					&quot;origin&quot;: &quot;class path resource [application.yml]:7:15&quot;</span></span>
+<span class="line"><span>				},</span></span>
+<span class="line"><span>				&quot;spring.datasource.password&quot;: {</span></span>
+<span class="line"><span>					&quot;value&quot;: &quot;******&quot;,</span></span>
+<span class="line"><span>					&quot;origin&quot;: &quot;class path resource [application.yml]:8:15&quot;</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	]</span></span>
+<span class="line"><span>}</span></span></code></pre></div><h5 id="_2-运行时度量监控" tabindex="-1"><strong>2. 运行时度量监控</strong> <a class="header-anchor" href="#_2-运行时度量监控" aria-label="Permalink to &quot;**2. 运行时度量监控**&quot;">​</a></h5><ul><li><strong>/metrics端点</strong><br> 默认返回所有可用指标名称（如<code>jvm.memory.used</code>、<code>http.server.requests</code>等），需指定名称查看详情：</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 查看JVM内存使用情况</span></span>
+<span class="line"><span>http://localhost:8088/actuator/metrics/jvm.memory.used</span></span></code></pre></div><ul><li><strong>/loggers端点</strong><br> 动态查看或修改日志级别。例如，以下配置表示：</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    {</span></span>
+<span class="line"><span>      &quot;ROOT&quot;: {&quot;configuredLevel&quot;: &quot;INFO&quot;},</span></span>
+<span class="line"><span>      &quot;com.macro.mall.tiny&quot;: {&quot;configuredLevel&quot;: &quot;DEBUG&quot;}</span></span>
+<span class="line"><span>    }</span></span></code></pre></div><pre><code>访问地址：\`http://localhost:8088/actuator/loggers\`。
+</code></pre><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
+<span class="line"><span>	&quot;levels&quot;: [</span></span>
+<span class="line"><span>		&quot;OFF&quot;,</span></span>
+<span class="line"><span>		&quot;ERROR&quot;,</span></span>
+<span class="line"><span>		&quot;WARN&quot;,</span></span>
+<span class="line"><span>		&quot;INFO&quot;,</span></span>
+<span class="line"><span>		&quot;DEBUG&quot;,</span></span>
+<span class="line"><span>		&quot;TRACE&quot;</span></span>
+<span class="line"><span>	],</span></span>
+<span class="line"><span>	&quot;loggers&quot;: {</span></span>
+<span class="line"><span>		&quot;ROOT&quot;: {</span></span>
+<span class="line"><span>			&quot;configuredLevel&quot;: &quot;INFO&quot;,</span></span>
+<span class="line"><span>			&quot;effectiveLevel&quot;: &quot;INFO&quot;</span></span>
+<span class="line"><span>		},</span></span>
+<span class="line"><span>		&quot;com.macro.mall.tiny&quot;: {</span></span>
+<span class="line"><span>			&quot;configuredLevel&quot;: &quot;DEBUG&quot;,</span></span>
+<span class="line"><span>			&quot;effectiveLevel&quot;: &quot;DEBUG&quot;</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><h5 id="_3-健康检查-关闭应用" tabindex="-1"><strong>3. 健康检查/关闭应用</strong> <a class="header-anchor" href="#_3-健康检查-关闭应用" aria-label="Permalink to &quot;**3. 健康检查/关闭应用**&quot;">​</a></h5><ul><li><strong>/health端点</strong><br> 返回应用健康状态（<code>UP</code>表示正常），支持集成自定义健康检查（如数据库连接）：</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    { &quot;status&quot;: &quot;UP&quot; }</span></span></code></pre></div><ul><li><strong>/shutdown端点</strong><br> 通过POST请求关闭应用（需配置启用）：</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>management.endpoint.shutdown.enabled=true</span></span></code></pre></div><pre><code>请求示例：
+</code></pre><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>curl -X POST http://localhost:8088/actuator/shutdown</span></span></code></pre></div><hr><h4 id="三、自定义actuator配置" tabindex="-1"><strong>三、自定义Actuator配置</strong> <a class="header-anchor" href="#三、自定义actuator配置" aria-label="Permalink to &quot;**三、自定义Actuator配置**&quot;">​</a></h4><h5 id="_1-开启所有端点" tabindex="-1"><strong>1. 开启所有端点</strong> <a class="header-anchor" href="#_1-开启所有端点" aria-label="Permalink to &quot;**1. 开启所有端点**&quot;">​</a></h5><p>默认仅开放<code>health</code>和<code>info</code>端点，可通过配置暴露全部端点：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>management:</span></span>
+<span class="line"><span>  endpoints:</span></span>
+<span class="line"><span>    web:</span></span>
+<span class="line"><span>      exposure:</span></span>
+<span class="line"><span>        include: &#39;*&#39;</span></span></code></pre></div><h5 id="_2-修改端点基础路径" tabindex="-1"><strong>2. 修改端点基础路径</strong> <a class="header-anchor" href="#_2-修改端点基础路径" aria-label="Permalink to &quot;**2. 修改端点基础路径**&quot;">​</a></h5><p>自定义Actuator的访问路径（如改为<code>/monitor</code>）：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>management:</span></span>
+<span class="line"><span>  endpoints:</span></span>
+<span class="line"><span>    web:</span></span>
+<span class="line"><span>      base-path: /monitor</span></span></code></pre></div><p>此时端点地址变为：<code>http://localhost:8088/monitor/health</code>。</p><h5 id="_3-安全建议" tabindex="-1"><strong>3. 安全建议</strong> <a class="header-anchor" href="#_3-安全建议" aria-label="Permalink to &quot;**3. 安全建议**&quot;">​</a></h5><ul><li><p><strong>敏感端点保护</strong>：结合Spring Security限制端点的访问权限。</p></li><li><p><strong>禁用危险端点</strong>：生产环境中建议关闭<code>/shutdown</code>等高风险端点。</p></li></ul><hr><h4 id="四、总结" tabindex="-1"><strong>四、总结</strong> <a class="header-anchor" href="#四、总结" aria-label="Permalink to &quot;**四、总结**&quot;">​</a></h4><p>Spring Boot Actuator 是提升应用可观测性的核心工具，通过其丰富的端点，开发者可以轻松实现：</p><ul><li><p><strong>实时监控</strong>：掌握JVM状态、请求映射、日志级别等运行时信息。</p></li><li><p><strong>快速排障</strong>：分析Bean依赖、自动配置报告和环境变量。</p></li><li><p><strong>灵活定制</strong>：按需启用或隐藏端点，适配不同环境需求。</p></li></ul><p>合理使用Actuator，不仅能提升运维效率，还能为应用的稳定性保驾护航。赶紧尝试这些端点，让你的Spring Boot应用更加透明可控吧！</p><hr><p><strong>相关资源</strong></p><ul><li><p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html" target="_blank" rel="noreferrer">Spring Boot Actuator官方文档</a></p></li><li><p>完整代码示例：GitHub仓库链接（根据实际情况补充）</p></li></ul>`,50)])])}const g=s(o,[["render",e]]);export{q as __pageData,g as default};
