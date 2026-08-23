@@ -1,0 +1,29 @@
+import{_ as n,o as a,c as p,am as l}from"./chunks/framework._FJXuPhs.js";const g=JSON.parse('{"title":"工作电脑如何和GITHUB建立连接","description":"","frontmatter":{"title":"工作电脑如何和GITHUB建立连接","date":"2024-10-19 20:59:58","updated":"2026-05-08 00:00:00"},"headers":[],"relativePath":"部署&工具/部署&工具  版本控制工具/Git使用/Git账号与日常操作/工作电脑如何和GITHUB建立连接.md","filePath":"部署&工具/部署&工具  版本控制工具/Git使用/Git账号与日常操作/工作电脑如何和GITHUB建立连接.md","lastUpdated":null}'),e={name:"部署&工具/部署&工具  版本控制工具/Git使用/Git账号与日常操作/工作电脑如何和GITHUB建立连接.md"};function i(t,s,c,o,u,_){return a(),p("div",null,[...s[0]||(s[0]=[l(`<div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#临时修改一下用户名和邮箱</span></span>
+<span class="line"><span>git config --global user.email &quot;lluo2020@163.com&quot;</span></span>
+<span class="line"><span>git config --global user.name &quot;Lluo-liang&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>查看用户名 ：git config user.name</span></span>
+<span class="line"><span>查看邮箱：git config user.email</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#注意后面切换回去</span></span>
+<span class="line"><span>git config --global user.email &quot;felixwu@sheinbpo.com&quot;</span></span>
+<span class="line"><span>git config --global user.name &quot;felixwu&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#生成个人密钥</span></span>
+<span class="line"><span>ssh-keygen -t rsa -f ~/.ssh/id_rsa_personal -C &quot;lluo2020@163.com&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#添加SSH配置</span></span>
+<span class="line"><span>touch ~/.ssh/config nano ~/.ssh/config</span></span>
+<span class="line"><span>文件内容</span></span>
+<span class="line"><span>Host github.com</span></span>
+<span class="line"><span>  HostName github.com</span></span>
+<span class="line"><span>  User git</span></span>
+<span class="line"><span>  IdentityFile ~/.ssh/id_rsa_personal</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#将生成的SSH配置放入到  GITHUb  ADD SSH KEY</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#测试连接</span></span>
+<span class="line"><span>ssh -T git@github.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#可以了</span></span></code></pre></div>`,1)])])}const d=n(e,[["render",i]]);export{g as __pageData,d as default};
